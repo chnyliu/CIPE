@@ -134,11 +134,11 @@ class ModelManager(object):
             logits = model(data.x, data.edge_index)
             logits = F.log_softmax(logits, 1)
 
-            # loss = loss_fn(logits[data.val_mask], data.y[data.val_mask])
-            # metric = loss.item()  # use val loss as metric
+            loss = loss_fn(logits[data.val_mask], data.y[data.val_mask])
+            metric = loss.item()  # use val loss as metric
 
-            val_acc = evaluate(logits, data.y, data.val_mask)
-            metric = 1.0 - val_acc  # use val acc as metric
+            # val_acc = evaluate(logits, data.y, data.val_mask)
+            # metric = 1.0 - val_acc  # use val acc as metric
 
             test_acc = evaluate(logits, data.y, data.test_mask)
 
